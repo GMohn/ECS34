@@ -168,7 +168,6 @@ CSixMensMorrisBoard::operator std::string() const{
 
 bool CSixMensMorrisBoard::Place(char player, int where){
     int UnplacedIndex = player == SIX_MENS_MORRIS_PLAYER_R ? 0 : 1;
-    //change DTurn after succesful place
 	if((player == DTurn) && DUnplacedPieces[UnplacedIndex]){
         if((0 <= where) && (where < SIX_MENS_MORRIS_POSITIONS)){
             if(SIX_MENS_MORRIS_EMPTY == DPositions[where]){
@@ -177,6 +176,8 @@ bool CSixMensMorrisBoard::Place(char player, int where){
                 }
                 DPositions[where] = player;
                 DUnplacedPieces[UnplacedIndex]--;
+				//change DTurn after succesful place
+				DTurn = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
                 return true;
             }
         }
@@ -213,8 +214,10 @@ bool CSixMensMorrisBoard::Move(char player, int from, int to){
                     DPositions[to] = player;
                     DPositions[from] = SIX_MENS_MORRIS_EMPTY;
                     if(!MillCreated(player)){
+						//switch player turn
                         DTurn = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
                     }
+					
                     return true;
                 }
             }
