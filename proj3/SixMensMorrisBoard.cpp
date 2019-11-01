@@ -176,8 +176,10 @@ bool CSixMensMorrisBoard::Place(char player, int where){
                 }
                 DPositions[where] = player;
                 DUnplacedPieces[UnplacedIndex]--;
-				//change DTurn after succesful place
-				DTurn = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
+				if(!MillCreated(player)){
+						//switch player turn
+                        DTurn = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
+                    }
                 return true;
             }
         }
@@ -186,7 +188,7 @@ bool CSixMensMorrisBoard::Place(char player, int where){
 }
 
 bool CSixMensMorrisBoard::CanRemove(char player){
-	//cant remove another players mill unless 3 pieces left
+	
     return ((DTurn == player) && MillCreated(DTurn));
 }
 
@@ -227,6 +229,7 @@ bool CSixMensMorrisBoard::Move(char player, int from, int to){
 }
 
 bool CSixMensMorrisBoard::Remove(char player, int from){
+	//TODO cant remove another players mill unless 3 pieces left
     if(CanRemove(player)&& (0 <= from) && (from < SIX_MENS_MORRIS_POSITIONS)){
         char OtherPlayer = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
         if(DPositions[from] == OtherPlayer){
