@@ -19,18 +19,18 @@ int main(int argc, char *argv[]){
                 std::cout<<"Player "<<CurrentTurn<<" place a piece> ";
 				//TODO When a piece is placed, switch turns unless mill is created; prompt to remove piece
                 int Position = InputPosition();
-                if(not SixMensMorrisBoard.Place(CurrentTurn,Position)){
+                if(!SixMensMorrisBoard.Place(CurrentTurn,Position)){
                     do{
                         std::cout<<"Invalid position, player "<<CurrentTurn<<" place a piece> ";
                         Position = InputPosition();
-                    }while(not SixMensMorrisBoard.Place(CurrentTurn,Position));
+                    }while(!SixMensMorrisBoard.Place(CurrentTurn,Position));
                 }
             }
             else{
                 std::cout<<"Player "<<CurrentTurn<<" select a piece to move> ";
                 int Position = InputPosition();
                 
-                if(not SixMensMorrisBoard.CanMove(CurrentTurn,Position)){
+                if(!SixMensMorrisBoard.CanMove(CurrentTurn,Position)){
                     do{
                         if(CurrentTurn == SixMensMorrisBoard.PlayerAtPosition(Position)){
                             std::cout<<"Invalid, piece has no moves, player "<<CurrentTurn<<" select a piece to move> ";
@@ -39,26 +39,26 @@ int main(int argc, char *argv[]){
                             std::cout<<"Invalid position, player "<<CurrentTurn<<" select a piece to move> ";
                         }
                         Position = InputPosition();
-                    }while(not SixMensMorrisBoard.CanMove(CurrentTurn,Position));
+                    }while(!SixMensMorrisBoard.CanMove(CurrentTurn,Position));
                 }
                 std::cout<<"Player "<<CurrentTurn<<" select where to move> ";
                 int ToPosition = InputPosition();
-                if(not SixMensMorrisBoard.Move(CurrentTurn,Position,ToPosition)){
+                if(!SixMensMorrisBoard.Move(CurrentTurn,Position,ToPosition)){
                     do{
                         std::cout<<"Invalid move, player "<<CurrentTurn<<" select where to move> ";
                         ToPosition = InputPosition();
-                    }while(not SixMensMorrisBoard.Move(CurrentTurn,Position,ToPosition));
+                    }while(!SixMensMorrisBoard.Move(CurrentTurn,Position,ToPosition));
                 }
             }
             if(SixMensMorrisBoard.CanRemove(CurrentTurn)){
                 std::cout<<"Player "<<CurrentTurn<<" select an opponent piece to remove> ";
                 int Position = InputPosition();
                 
-                if(not SixMensMorrisBoard.Remove(CurrentTurn,Position)){
+                if(!SixMensMorrisBoard.Remove(CurrentTurn,Position)){
                     do{
                         std::cout<<"Invalid position, player "<<CurrentTurn<<" select an opponent piece to remove> ";
                         Position = InputPosition();
-                    }while(not SixMensMorrisBoard.Remove(CurrentTurn,Position));
+                    }while(!SixMensMorrisBoard.Remove(CurrentTurn,Position));
                 }
             }
         }
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
             std::string InputLine;
             std::cout<<"Play again? ";
             std::getline(std::cin, InputLine);
-            if(!InputLine.empty() and ((tolower(InputLine[0]) == 'y') or (tolower(InputLine[0]) == 'n'))){
+            if(!InputLine.empty() && ((tolower(InputLine[0]) == 'y') || (tolower(InputLine[0]) == 'n'))){
                 Done = tolower(InputLine[0]) == 'n';
 				//TODO when input == y call main
                 break;
@@ -82,7 +82,7 @@ int InputPosition(){
     std::getline(std::cin, InputLine);
     try{
         int Position = std::stoi(InputLine,nullptr,16);
-        if((0 > Position) or (16 <= Position)){
+        if((0 > Position) || (16 <= Position)){
             return -1;   
         }
         return Position;

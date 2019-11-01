@@ -1,3 +1,4 @@
+#ifdef ABC
 #include <gtest/gtest.h> 	  			 	 
 #include "SixMensMorrisBoard.h"
 
@@ -41,3 +42,4 @@ TEST(SixMensMorrisBoardTest, BadParametersTest){
     // Needs to test that correct return upon bad parameters
 }
 
+#endif
