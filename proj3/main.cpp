@@ -17,12 +17,13 @@ int main(int argc, char *argv[]){
             std::cout<<"-------------------"<<std::endl;
             if(SixMensMorrisBoard.UnplacedPieces(CurrentTurn)){
                 std::cout<<"Player "<<CurrentTurn<<" place a piece> ";
-				//TODO When a piece is placed, switch turns unless mill is created; prompt to remove piece
+				
                 int Position = InputPosition();
                 if(!SixMensMorrisBoard.Place(CurrentTurn,Position)){
                     do{
                         std::cout<<"Invalid position, player "<<CurrentTurn<<" place a piece> ";
                         Position = InputPosition();
+					//TODO When a piece is placed, switch turns unless mill is created; prompt to remove piece
                     }while(!SixMensMorrisBoard.Place(CurrentTurn,Position));
                 }
             }

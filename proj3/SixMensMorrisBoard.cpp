@@ -168,7 +168,8 @@ CSixMensMorrisBoard::operator std::string() const{
 
 bool CSixMensMorrisBoard::Place(char player, int where){
     int UnplacedIndex = player == SIX_MENS_MORRIS_PLAYER_R ? 0 : 1;
-    if((player == DTurn) && DUnplacedPieces[UnplacedIndex]){
+    //change DTurn after succesful place
+	if((player == DTurn) && DUnplacedPieces[UnplacedIndex]){
         if((0 <= where) && (where < SIX_MENS_MORRIS_POSITIONS)){
             if(SIX_MENS_MORRIS_EMPTY == DPositions[where]){
                 for(int Index = 0; Index < SIX_MENS_MORRIS_POSITIONS; Index++){
@@ -184,6 +185,7 @@ bool CSixMensMorrisBoard::Place(char player, int where){
 }
 
 bool CSixMensMorrisBoard::CanRemove(char player){
+	//cant remove another players mill unless 3 pieces left
     return ((DTurn == player) && MillCreated(DTurn));
 }
 
