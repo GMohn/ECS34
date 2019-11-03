@@ -39,10 +39,11 @@ bool CSixMensMorrisBoard::MillCreated(char player){
         bool CurrentMill = true;
         bool PastMill = true;
         char CurrentFirst = DPositions[PotentialMills[Index][0]];
-        char PastFirst = DPreviousPositions[PotentialMills[Index][0]]; //this did not update from previous move
-        if((CurrentFirst != PastFirst) || (CurrentFirst != player)){
+        char PastFirst = DPreviousPositions[PotentialMills[Index][0]]; 
+		// we want to iter the 2nd and 3rd cols so if 1st col idx of potmill is the players it should check if the 2nd col is as well
+		/*if ((CurrentFirst != PastFirst) || (CurrentFirst != player)) {
             continue;
-        }
+        }*/
         for(int Inner = 1; Inner < 3; Inner++){
             if(CurrentFirst != DPositions[PotentialMills[Index][Inner]]){
                 CurrentMill = false;
@@ -60,7 +61,7 @@ bool CSixMensMorrisBoard::MillCreated(char player){
 }
 
 bool CSixMensMorrisBoard::AdjacentPositions(int from, int to){
-    int Adjacents[SIX_MENS_MORRIS_POSITIONS] = {0x000A, 0x0015, 0x0202, 0x0090,
+    int Adjacents[SIX_MENS_MORRIS_POSITIONS] = {0x0042, 0x0015, 0x0202, 0x0090,
                                                 0x002A, 0x0110, 0x2081, 0x0448,
                                                 0x1220, 0x8104, 0x0880, 0x5400,
                                                 0x0900, 0x4040, 0xA800, 0x4200};
@@ -191,8 +192,8 @@ bool CSixMensMorrisBoard::Place(char player, int where){
 bool CSixMensMorrisBoard::CanRemove(char player){
     return ((DTurn == player) && MillCreated(DTurn));
 }
-
-bool CSixMensMorrisBoard::CanMove(char player, int where){
+//TODO fix 
+bool CSixMensMorrisBoard::CanMove(char player, int where){ 
     if((SIX_MENS_MORRIS_PLAYER_R == player) || (SIX_MENS_MORRIS_PLAYER_W == player)){
         if((0 <= where) && (where < SIX_MENS_MORRIS_POSITIONS)){
             if(player == DPositions[where]){
