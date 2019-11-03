@@ -32,7 +32,7 @@ bool CSixMensMorrisBoard::MillCreated(char player){
                                 {0xA, 0xB, 0xC},
                                 {0xD, 0xE, 0xF},
                                 {0x0, 0x6, 0xD},
-                                {0x3, 0x7, 0xF},
+                                {0x3, 0x7, 0xA},
                                 {0x5, 0x8, 0xC},
                                 {0x2, 0x9, 0xF}};
     for(int Index = 0; Index < 8; Index++){
@@ -189,7 +189,6 @@ bool CSixMensMorrisBoard::Place(char player, int where){
 }
 
 bool CSixMensMorrisBoard::CanRemove(char player){
-	
     return ((DTurn == player) && MillCreated(DTurn));
 }
 
@@ -236,10 +235,9 @@ bool CSixMensMorrisBoard::Move(char player, int from, int to){
 }
 
 bool CSixMensMorrisBoard::Remove(char player, int from){
-	//TODO cant remove another players mill unless 3 pieces left or if only mills are established
     if(CanRemove(player)&& (0 <= from) && (from < SIX_MENS_MORRIS_POSITIONS)){
-        char OtherPlayer = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
-        if(DPositions[from] == OtherPlayer){
+        char OtherPlayer = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;       
+		if(DPositions[from] == OtherPlayer){
             DPositions[from] = SIX_MENS_MORRIS_EMPTY;
             int UnplacedIndex = OtherPlayer == SIX_MENS_MORRIS_PLAYER_R ? 0 : 1;
             int PlayerCount = DUnplacedPieces[UnplacedIndex];
