@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\gmohn\Documents\GitHub\ECS34\proj3\</FILEPATH>
+      <FILENAME>SixMensMorrisBoard.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>21</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'CSixMensMorrisBoard::DPreviousPositions' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>CSixMensMorrisBoard::{ctor}</FUNCTION>
+    <DECORATED>??0CSixMensMorrisBoard@@QEAA@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>CSixMensMorrisBoard::DPreviousPositions</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\gmohn\Documents\GitHub\ECS34\proj3\</FILEPATH>
+      <FILENAME>SixMensMorrisBoard.cpp</FILENAME>
+      <LINE>17</LINE>
+      <COLUMN>21</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'CSixMensMorrisBoard::DPreviousPositions' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>CSixMensMorrisBoard::{ctor}</FUNCTION>
+    <DECORATED>??0CSixMensMorrisBoard@@QEAA@DQEBHQEBD1@Z</DECORATED>
+    <FUNCLINE>17</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>CSixMensMorrisBoard::DPreviousPositions</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

@@ -26,7 +26,8 @@ CSixMensMorrisBoard::CSixMensMorrisBoard(char turn, const int unplaced[SIX_MENS_
 }
 
 bool CSixMensMorrisBoard::MillCreated(char player){
-    int PotentialMills[8][3] = {{0x0, 0x1, 0x2},
+    //something wrong about this when called by place method
+	int PotentialMills[8][3] = {{0x0, 0x1, 0x2},
                                 {0x3, 0x4, 0x5},
                                 {0xA, 0xB, 0xC},
                                 {0xD, 0xE, 0xF},
@@ -38,7 +39,7 @@ bool CSixMensMorrisBoard::MillCreated(char player){
         bool CurrentMill = true;
         bool PastMill = true;
         char CurrentFirst = DPositions[PotentialMills[Index][0]];
-        char PastFirst = DPreviousPositions[PotentialMills[Index][0]];
+        char PastFirst = DPreviousPositions[PotentialMills[Index][0]]; //this did not update from previous move
         if((CurrentFirst != PastFirst) || (CurrentFirst != player)){
             continue;
         }
@@ -208,12 +209,18 @@ bool CSixMensMorrisBoard::CanMove(char player, int where){
 }
 
 bool CSixMensMorrisBoard::Move(char player, int from, int to){
+	//TODO on move check successful mill, mills can be recreated moving back and fourth
+	//TODO DPreviousPositions Needs to be updated here
     int UnplacedIndex = player == SIX_MENS_MORRIS_PLAYER_R ? 0 : 1;
     if((player == DTurn) && (0 == DUnplacedPieces[UnplacedIndex])){
         if((0 <= from) && (from < SIX_MENS_MORRIS_POSITIONS)){
             if(player == DPositions[from]){
                 if((0 <= to) && (to < SIX_MENS_MORRIS_POSITIONS) && (SIX_MENS_MORRIS_EMPTY ==  DPositions[to]) && AdjacentPositions(from, to)){
-                    DPositions[to] = player;
+                    //Updating DPreviousPositions Prior to Move change
+					for (int Index = 0; Index < SIX_MENS_MORRIS_POSITIONS; Index++) {
+						DPreviousPositions[Index] = DPositions[Index];
+					}
+					DPositions[to] = player;
                     DPositions[from] = SIX_MENS_MORRIS_EMPTY;
                     if(!MillCreated(player)){
 						//switch player turn
@@ -229,7 +236,7 @@ bool CSixMensMorrisBoard::Move(char player, int from, int to){
 }
 
 bool CSixMensMorrisBoard::Remove(char player, int from){
-	//TODO cant remove another players mill unless 3 pieces left
+	//TODO cant remove another players mill unless 3 pieces left or if only mills are established
     if(CanRemove(player)&& (0 <= from) && (from < SIX_MENS_MORRIS_POSITIONS)){
         char OtherPlayer = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
         if(DPositions[from] == OtherPlayer){

@@ -23,7 +23,6 @@ int main(int argc, char *argv[]){
                     do{
                         std::cout<<"Invalid position, player "<<CurrentTurn<<" place a piece> ";
                         Position = InputPosition();
-					//TODO When a piece is placed, switch turns unless mill is created; prompt to remove piece
                     }while(!SixMensMorrisBoard.Place(CurrentTurn,Position));
                 }
             }
