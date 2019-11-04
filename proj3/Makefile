@@ -1,11 +1,15 @@
-output: main.o SixMensMorrisBoard.o
-	g++ main.o SixMensMorrisBoard -o output
+CXX = g++
+TESTLDFLAGS += -lgtest -lgtest_man -lpthread
+CXXFLAGS  = -std=c++14 -Wall -Werror
 
-main.o: main.cpp
-	g++ -c main.cpp
+bin/proj3: obj/main.o obj/SixMensMorrisBoard.o obj
+	$(CXX) obj/main.o obj/SixMensMorrisBoard.o -o bin/proj3
 
-SixMensMorrisBoard.o: SixMensMorrisBoard.cpp SixMensMorrisBoard.h
-	g++ -c SixMensMorrisBoard.cpp
+obj/main.o: src/main.cpp
+	$(CXX) -c src/main.cpp -o obj/main.o
+
+obj/SixMensMorrisBoard.o: src/SixMensMorrisBoard.cpp include/SixMensMorrisBoard.h
+	$(CXX) -c src/SixMensMorrisBoard.cpp -o obj/SixMensMorrisBoard.obj
 
 clean:
-	rm *.o output
+	rm .o proj3
