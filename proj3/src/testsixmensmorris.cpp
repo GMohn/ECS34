@@ -36,7 +36,23 @@ TEST(SixMensMorrisBoardTest, SetBoardTest){
 
     char turn = SIX_MENS_MORRIS_PLAYER_W;
     int unplaced[SIX_MENS_MORRIS_PLAYERS] = {2,3};
-    char positions[SIX_MENS_MORRIS_POSITIONS] = {};
+    char positions[SIX_MENS_MORRIS_POSITIONS] = {SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
+                                                 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
+                                                 SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R};
+    char previous[SIX_MENS_MORRIS_POSITIONS] = {SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
+                                                 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
+                                                 SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R};
+    CSixMensMorrisBoard Board(turn, unplaced, positions, previous);
+    Expect_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
+    for(int i = 0; i < SIX_MENS_MORRIS_POSITIONS; i++){
+        Expect_EQ(Board.PlayerAtPosition(i), positions[i]);
+    }
+    Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),Unplaced[0]);
+    Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),Unplaced[1]);
 
 }
 
