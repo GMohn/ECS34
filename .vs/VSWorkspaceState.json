@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\proj3"
+    "\\proj3",
+    "\\proj3\\src"
   ],
-  "SelectedNode": "\\proj3\\SixMensMorrisBoard.cpp",
   "PreviewInSolutionExplorer": false
 }
