@@ -2,6 +2,12 @@ CXX = g++
 TESTLDFLAGS += -lgtest -lgtest_man -lpthread
 CXXFLAGS  = -std=c++14 -Wall -Werror
 
+INC_DIR = ./include
+SRC_DIR = ./src
+OBJ_DIR = ./obj
+BIN_DIR = ./bin
+TESTBIN_DIR = ./testbin
+
 bin/proj3: obj/main.o obj/SixMensMorrisBoard.o obj
 	$(CXX) obj/main.o obj/SixMensMorrisBoard.o -o bin/proj3
 
