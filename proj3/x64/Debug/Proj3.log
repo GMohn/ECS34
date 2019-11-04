@@ -1,1 +1,3 @@
-﻿  Proj3.vcxproj -> C:\Users\gmohn\Documents\GitHub\ECS34\proj3\x64\Debug\Proj3.exe
+﻿  SixMensMorrisBoard.cpp
+C:\Users\gmohn\Documents\GitHub\ECS34\proj3\SixMensMorrisBoard.cpp(266): warning C4700: uninitialized local variable 'OtherPlayer' used
+  Proj3.vcxproj -> C:\Users\gmohn\Documents\GitHub\ECS34\proj3\x64\Debug\Proj3.exe
