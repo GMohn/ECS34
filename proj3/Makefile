@@ -1,6 +1,5 @@
-
 CXX	= g++
-CXXFLAGS	= -std=c++17 -Wall -Werror
+CPP = cpp
 LD = ld
 OBJCOPY = objcopy
 OBJDUMP = objdump
@@ -27,25 +26,24 @@ LDFLAGS         +=
 TESTLDFLAGS     += -lgtest -lgtest_main  -lpthread
 CPPFLAGS        += -std=c++14 
 PROJ_NAME       = proj3
-TESTSIXMENS_NAME   = testsixmensmorris
-
+TESTSIXMENS_NAME  = testsixmensmorris
 MAIN_OBJ        = $(OBJ_DIR)/main.o
 
 TESTSIXMENS_OBJ    = $(OBJ_DIR)/testsixmensmorris.o
 
-PROJ_OBJS       = $(OBJ_DIR)/SixMensMorrisBoard.o     \
+PROJ_OBJS       = $(OBJ_DIR)/SixMensMorrisBoard.o     
 
             
             
 all: directories test $(BIN_DIR)/$(PROJ_NAME)
-test: $(TESTBIN_DIR)/$(TESTTREE_NAME)
-	$(TESTBIN_DIR)/$(TESTTREE_NAME)
+test: $(TESTBIN_DIR)/$(TESTSIXMENS_NAME)
+	$(TESTBIN_DIR)/$(TESTSIXMENS_NAME)
 	
 $(BIN_DIR)/$(PROJ_NAME): $(PROJ_OBJS) $(MAIN_OBJ)
 	$(CXX) $(MAIN_OBJ) $(PROJ_OBJS) -o $(BIN_DIR)/$(PROJ_NAME) $(CFLAGS) $(CPPFLAGS) $(DEFINES) $(LDFLAGS) 
 	
-$(TESTBIN_DIR)/$(TESTTREE_NAME): $(PROJ_OBJS) $(TESTTREE_OBJ)
-	$(CXX) $(PROJ_OBJS) $(TESTTREE_OBJ) -o $(TESTBIN_DIR)/$(TESTSIXMENS_NAME) $(CFLAGS) $(CPPFLAGS) $(DEFINES) $(TESTLDFLAGS) 
+$(TESTBIN_DIR)/$(TESTSIXMENS_NAME): $(PROJ_OBJS) $(TESTSIXMENS_OBJ)
+	$(CXX) $(PROJ_OBJS) $(TESTSIXMENS_OBJ) -o $(TESTBIN_DIR)/$(TESTSIXMENS_NAME) $(CFLAGS) $(CPPFLAGS) $(DEFINES) $(TESTLDFLAGS) 
 
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
