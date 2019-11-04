@@ -7,7 +7,7 @@ TEST(SixMensMorrisBoardTest, DefaultBoardTest){
     CSixMensMorrisBoard Board;
     EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_R);
 	for(int index = 0; index < SIX_MENS_MORRIS_POSITIONS;index++){
-		EXPECT_EQ(Board.PlayerAtPosition(index,SIX_MENS_MORRIS_EMPTY);
+		EXPECT_EQ(Board.PlayerAtPosition(index),SIX_MENS_MORRIS_EMPTY);
 	}
 	EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),SIX_MENS_MORRIS_PIECES);
 	EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),SIX_MENS_MORRIS_PIECES);
