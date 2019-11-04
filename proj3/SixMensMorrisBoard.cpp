@@ -235,7 +235,7 @@ bool CSixMensMorrisBoard::CanMove(char player, int where){
 bool CSixMensMorrisBoard::Move(char player, int from, int to){
 	//Done on move check successful mill, mills can be recreated moving back and fourth
 	//Done DPreviousPositions Needs to be updated here
-	char OtherPlayer;
+	char OtherPlayer = '\0';
     int UnplacedIndex = player == SIX_MENS_MORRIS_PLAYER_R ? 0 : 1;
     if((player == DTurn) && (0 == DUnplacedPieces[UnplacedIndex])){
         if((0 <= from) && (from < SIX_MENS_MORRIS_POSITIONS)){
@@ -251,11 +251,11 @@ bool CSixMensMorrisBoard::Move(char player, int from, int to){
 					if (!MillCreated(player)) {
 						//switch player turn
 						DTurn = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
-						char OtherPlayer = DTurn;
+						OtherPlayer = DTurn;
 					}
 					//a mill was created, we have to assign the other player because we havent switched dturn yet
 					else {
-						char OtherPlayer = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
+						OtherPlayer = DTurn == SIX_MENS_MORRIS_PLAYER_R ? SIX_MENS_MORRIS_PLAYER_W : SIX_MENS_MORRIS_PLAYER_R;
 					}
 					//check if Dpositions of other player has valid moves
 					int ValidMoves = 0;

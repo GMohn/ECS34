@@ -69,7 +69,6 @@ int main(int argc, char *argv[]){
             std::getline(std::cin, InputLine);
             if(!InputLine.empty() && ((tolower(InputLine[0]) == 'y') || (tolower(InputLine[0]) == 'n'))){
                 Done = tolower(InputLine[0]) == 'n';
-				//TODO when input == y call main
                 break;
             }
         }
