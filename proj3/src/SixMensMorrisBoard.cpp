@@ -44,7 +44,7 @@ bool CSixMensMorrisBoard::MillCreated(char player) {
 		char TestPrevLast = DPreviousPositions[PotentialMills[Index][2]];
 		// we want to iter the 2nd and 3rd cols so if 1st col idx of potmill is the players it should check if the 2nd col is as well
 		//check for 2 prev pieces instead of one because only 1 prev piece can be changed
-		if ((CurrentFirst != PastFirst) && (TestCurrLast != TestPrevLast) || (CurrentFirst != player)) { //curr1 != Past1 && curr2 != Past2 && curr3 != Past3 || Curr1 != player
+		if ((CurrentFirst != PastFirst && TestCurrLast != TestPrevLast) || (CurrentFirst != player)) { //curr1 != Past1 && curr2 != Past2 && curr3 != Past3 || Curr1 != player
 			continue;
 		} //meant to stop a mill that already exists
 		for (int Inner = 1; Inner < 3; Inner++) {

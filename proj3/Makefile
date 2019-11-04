@@ -1,17 +1,63 @@
-CXX = g++
-TESTLDFLAGS += -lgtest -lgtest_man -lpthread
-CXXFLAGS  = -std=c++14 -Wall -Werror
 
+CXX	= g++
+CXXFLAGS	= -std=c++17 -Wall -Werror
+LD = ld
+OBJCOPY = objcopy
+OBJDUMP = objdump
 
+INC_DIR = ./include
+SRC_DIR = ./src
+OBJ_DIR = ./obj
+BIN_DIR = ./bin
+TESTBIN_DIR = ./testbin
 
-bin/proj3: main.o SixMensMorrisBoard.o obj
-	$(CXX) main.o SixMensMorrisBoard.o -o proj3
+PKGS = 
 
-obj/main.o: main.cpp SixMensMorrisBoard.h
-	$(CXX) -c main.cpp -o main.o
+#DEBUG_MODE=TRUE
+ifdef DEBUG_MODE
+DEFINES  += -DDEBUG
+CFLAGS   += -g -ggdb -D_GLIBCXX_DEBUG
+else 
+CFLAGS   += -O3
+endif
 
-obj/SixMensMorrisBoard.o: SixMensMorrisBoard.cpp SixMensMorrisBoard.h
-	$(CXX) -c SixMensMorrisBoard.cpp -o SixMensMorrisBoard.o
+INCLUDE         += -I $(INC_DIR)
+CFLAGS          +=  -Wall
+LDFLAGS         += 
+TESTLDFLAGS     += -lgtest -lgtest_main  -lpthread
+CPPFLAGS        += -std=c++14 
+PROJ_NAME       = proj3
+TESTSIXMENS_NAME   = testsixmensmorris
 
-clean:
-	rm .o proj3
+MAIN_OBJ        = $(OBJ_DIR)/main.o
+
+TESTSIXMENS_OBJ    = $(OBJ_DIR)/testsixmensmorris.o
+
+PROJ_OBJS       = $(OBJ_DIR)/SixMensMorrisBoard.o     \
+
+            
+            
+all: directories test $(BIN_DIR)/$(PROJ_NAME)
+test: $(TESTBIN_DIR)/$(TESTTREE_NAME)
+	$(TESTBIN_DIR)/$(TESTTREE_NAME)
+	
+$(BIN_DIR)/$(PROJ_NAME): $(PROJ_OBJS) $(MAIN_OBJ)
+	$(CXX) $(MAIN_OBJ) $(PROJ_OBJS) -o $(BIN_DIR)/$(PROJ_NAME) $(CFLAGS) $(CPPFLAGS) $(DEFINES) $(LDFLAGS) 
+	
+$(TESTBIN_DIR)/$(TESTTREE_NAME): $(PROJ_OBJS) $(TESTTREE_OBJ)
+	$(CXX) $(PROJ_OBJS) $(TESTTREE_OBJ) -o $(TESTBIN_DIR)/$(TESTSIXMENS_NAME) $(CFLAGS) $(CPPFLAGS) $(DEFINES) $(TESTLDFLAGS) 
+
+	
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CFLAGS) $(CPPFLAGS) $(DEFINES) $(INCLUDE) -c $< -o $@
+	
+.PHONY: directories
+directories:
+	mkdir -p $(BIN_DIR)
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(TESTBIN_DIR)
+	
+clean::
+	-rm $(OBJ_DIR)/*.o $(INC_DIR)/*.*~ $(SRC_DIR)/*.*~
+	
+.PHONY: clean

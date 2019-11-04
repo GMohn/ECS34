@@ -1,7 +1,4 @@
 
-
-
-
 #include <gtest/gtest.h> 	  			 	 
 #include "SixMensMorrisBoard.h"
 
