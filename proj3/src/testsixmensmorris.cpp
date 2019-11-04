@@ -5,14 +5,14 @@
 TEST(SixMensMorrisBoardTest, DefaultBoardTest){
     // Needs to test that default board is correct
     CSixMensMorrisBoard Board;
-    Expect_EQ(Board.PLayerTurn(), SIX_MENS_MORRIS_PLAYER_R);
-	for(int index = 0; index<6MMpos;index++){
-		Expect_EQ(Board.PLayeratposition(index,SIX_MENS_MORRIS_EMPTY);
+    EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_R);
+	for(int index = 0; index < SIX_MENS_MORRIS_POSITIONS;index++){
+		EXPECT_EQ(Board.PlayerAtPosition(index,SIX_MENS_MORRIS_EMPTY);
 	}
-	Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),SIX_MENS_MORRIS_PIECES);
-	Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),SIX_MENS_MORRIS_PIECES);
-	Expect_FALSE(Board.GameOver());
-	Expect_EQ(std::string(Board), 
+	EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),SIX_MENS_MORRIS_PIECES);
+	EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),SIX_MENS_MORRIS_PIECES);
+	EXPECT_FALSE(Board.GameOver());
+	EXPECT_EQ(std::string(Board), 
                         ">RU:6 RC:0  WU:6 WC:0"
                         "o---------o---------o      0---1---2\n"
                         "|         |         |      | 3-4-5 |\n"
@@ -26,8 +26,8 @@ TEST(SixMensMorrisBoardTest, DefaultBoardTest){
                         "|    o----o----o    |\n"
                         "|         |         |\n"
                         "|         |         |\n"
-                        "o---------o---------o\n";
-	Expect_EQ(std::string(Board), Board.ToString());
+                        "o---------o---------o\n");
+	EXPECT_EQ(std::string(Board), Board.ToString());
 }
 
 TEST(SixMensMorrisBoardTest, SetBoardTest){
