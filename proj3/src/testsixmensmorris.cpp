@@ -13,7 +13,7 @@ TEST(SixMensMorrisBoardTest, DefaultBoardTest){
 	EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),SIX_MENS_MORRIS_PIECES);
 	EXPECT_FALSE(Board.GameOver());
 	EXPECT_EQ(std::string(Board), 
-                        ">RU:6 RC:0  WU:6 WC:0"
+                        ">RU:6 RC:0  WU:6 WC:0\n"
                         "o---------o---------o      0---1---2\n"
                         "|         |         |      | 3-4-5 |\n"
                         "|         |         |      6-7   8-9\n"
