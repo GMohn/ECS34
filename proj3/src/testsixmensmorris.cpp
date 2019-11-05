@@ -1,14 +1,16 @@
-
+#ifndef _MSC_VER
 #include <gtest/gtest.h> 	  			 	 
 #include "SixMensMorrisBoard.h"
 
 //inherit a mock object from protected class
-/*class MockObj: public CSixMensMorrisBoard {
+class MockClass: public CSixMensMorrisBoard {
 	public:
-		bool MockMill() { this->MillCreated(); }
-		static bool MockAdjacent() {AdjacentPositions();}
+		bool MockMill() { 
+			return this->MillCreated(); }
+		static bool MockAdjacent() {
+			return AdjacentPositions();}
 
-};*/
+};
 TEST(SixMensMorrisBoardTest, DefaultBoardTest){
     // Needs to test that default board is correct
     CSixMensMorrisBoard Board;
@@ -53,15 +55,15 @@ TEST(SixMensMorrisBoardTest, SetBoardTest){
                                                  SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
                                                  SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
                                                  SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R};
-    CSixMensMorrisBoard Board(turn, unplaced, positions, previous);
-    Expect_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
+    Board(turn, unplaced, positions, previous);
+    EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
     for(int i = 0; i < SIX_MENS_MORRIS_POSITIONS; i++){
-        Expect_EQ(Board.PlayerAtPosition(i), positions[i]);
+        EXPECT_EQ(Board.PlayerAtPosition(i), positions[i]);
     }
-    Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),Unplaced[0]);
-    Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),Unplaced[1]);
-    Expect_FALSE(Board.GameOver());
-    Expect_EQ(std::string(Board), 
+    EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),unplaced[0]);
+    EXPECT_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),unplaced[1]);
+    EXPECT_FALSE(Board.GameOver());
+    EXPECT_EQ(std::string(Board), 
                         " RU:2 RC:0 >WU:3 WC:0\n"
                         "R---------W---------R      0---1---2\n"
                         "|         |         |      | 3-4-5 |\n"
@@ -75,8 +77,8 @@ TEST(SixMensMorrisBoardTest, SetBoardTest){
                         "|    o----o----o    |\n"
                         "|         |         |\n"
                         "|         |         |\n"
-                        "R---------o---------R\n";
-	Expect_EQ(std::string(Board), Board.ToString());
+                        "R---------o---------R\n");
+	EXPECT_EQ(std::string(Board), Board.ToString());
 
 }
 
@@ -123,7 +125,7 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
     // Needs to test that placement creating a mill is correct with removal
 	//place at 2,9,15 expect mill created
 	CSixMensMorrisBoard Board;
-	MockObj;
+	MockClass MockMill;
 
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 2);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 3);
@@ -131,7 +133,7 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15);
 	//TODO Find how to call a 
-	//EXPECT_TRUE(MockMill(SIX_MENS_MORRIS_PLAYER_R));
+	EXPECT_TRUE(MockMill.MillCreated(SIX_MENS_MORRIS_PLAYER_R));
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 7);
 	//TODO ...
 	//EXPECT_TRUE(Board.MillCreated(SIX_MENS_MORRIS_PLAYER_W));
@@ -163,4 +165,4 @@ TEST(SixMensMorrisBoardTest, BadParametersTest){
     // Needs to test that correct return upon bad parameters
 	CSixMensMorrisBoard Board;
 }
-
+#endif
