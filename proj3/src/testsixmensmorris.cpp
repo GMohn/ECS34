@@ -3,13 +3,13 @@
 #include "SixMensMorrisBoard.h"
 
 //inherit a mock object from protected class
-class MockClass: public CSixMensMorrisBoard {
+/*class MockClass: public CSixMensMorrisBoard {
 	public:
 		bool MockMill(char player) { return this->MillCreated(player); }
 		static bool MockAdjacent(int from, int to) {
 			return AdjacentPositions(from, to); }
 
-};
+};*/
 TEST(SixMensMorrisBoardTest, DefaultBoardTest){
     // Needs to test that default board is correct
     CSixMensMorrisBoard Board;
@@ -123,19 +123,19 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
     // Needs to test that placement creating a mill is correct with removal
 	//place at 2,9,15 expect mill created
 	CSixMensMorrisBoard Board;
-	MockClass Test;
+	//MockClass Test;
 
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 2);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 3);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 9);
-	EXPECT_FALSE(Test.MockMill(SIX_MENS_MORRIS_PLAYER_R));
+	EXPECT_FALSE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_R));
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15);
 	//TODO Find how to inherit a protected class
-	EXPECT_TRUE(Test.MockMill(SIX_MENS_MORRIS_PLAYER_R));
+	EXPECT_TRUE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_R));
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 7);
 	//TODO ...
-	EXPECT_TRUE(Test.MockMill(SIX_MENS_MORRIS_PLAYER_W));
+	EXPECT_TRUE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_W));
 	
 }
 

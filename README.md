@@ -12,3 +12,7 @@ https://youtu.be/vf0n7te3_Vc
 
 testsixmensmorris:
 https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#testing-private-code
+https://www.programiz.com/cpp-programming/public-protected-private-inheritance
+https://stackoverflow.com/questions/1127616/how-do-i-unit-test-a-protected-method-in-c
+https://stackoverflow.com/questions/22510228/errorno-matching-function-call-to
+

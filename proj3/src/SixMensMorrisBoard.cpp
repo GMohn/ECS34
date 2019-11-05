@@ -144,7 +144,7 @@ CSixMensMorrisBoard::operator std::string() const{
     int CapturedR, CapturedW;
     
     CapturedR = SIX_MENS_MORRIS_PIECES - DUnplacedPieces[0];
-    CapturedW = SIX_MENS_MORRIS_PIECES - DUnplacedPieces[0];
+    CapturedW = SIX_MENS_MORRIS_PIECES - DUnplacedPieces[1];
     for(int Index = 0; Index < SIX_MENS_MORRIS_POSITIONS; Index++){
         if(DPositions[Index] == SIX_MENS_MORRIS_PLAYER_R){
             CapturedR--;   
