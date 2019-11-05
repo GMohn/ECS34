@@ -43,7 +43,40 @@ TEST(SixMensMorrisBoardTest, SetBoardTest){
 
     char turn = SIX_MENS_MORRIS_PLAYER_W;
     int unplaced[SIX_MENS_MORRIS_PLAYERS] = {2,3};
-    char positions[SIX_MENS_MORRIS_POSITIONS] = {};
+    char positions[SIX_MENS_MORRIS_POSITIONS] = {SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
+                                                 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
+                                                 SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R};
+    char previous[SIX_MENS_MORRIS_POSITIONS] = {SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
+                                                 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
+                                                 SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
+                                                 SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R};
+    CSixMensMorrisBoard Board(turn, unplaced, positions, previous);
+    Expect_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
+    for(int i = 0; i < SIX_MENS_MORRIS_POSITIONS; i++){
+        Expect_EQ(Board.PlayerAtPosition(i), positions[i]);
+    }
+    Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_R),Unplaced[0]);
+    Expect_EQ(Board.UnplacedPieces(SIX_MENS_MORRIS_PLAYER_W),Unplaced[1]);
+    Expect_FALSE(Board.GameOver());
+    Expect_EQ(std::string(Board), 
+                        " RU:2 RC:0 >WU:3 WC:0\n"
+                        "R---------W---------R      0---1---2\n"
+                        "|         |         |      | 3-4-5 |\n"
+                        "|         |         |      6-7   8-9\n"
+                        "|    o----o----o    |      | A-B-C |\n"
+                        "|    |         |    |      D---E---F\n"
+                        "|    |         |    |        LEGEND\n"
+                        "W----o         o----W\n"
+                        "|    |         |    |\n"
+                        "|    |         |    |\n"
+                        "|    o----o----o    |\n"
+                        "|         |         |\n"
+                        "|         |         |\n"
+                        "R---------o---------R\n";
+	Expect_EQ(std::string(Board), Board.ToString());
 
 }
 
