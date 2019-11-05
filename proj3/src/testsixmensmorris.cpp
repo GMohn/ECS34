@@ -125,24 +125,22 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
 	CSixMensMorrisBoard Board;
 	//MockClass Test;
 
-	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 2);
-	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 3);
-	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 9);
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 2));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 3));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 9));
 	EXPECT_FALSE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_R));
-	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10);
-	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15);
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15));
 	//TODO Find how to inherit a protected class
 	EXPECT_TRUE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_R));
-	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 7);
-	//TODO ...
-	EXPECT_TRUE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_W));
+
 	
 }
 
 TEST(SixMensMorrisBoardTest, MoveTest){
     // Needs to test that movement is correct
-	CSixMensMorrisBoard Board;
 	//test piece on 6 -> 0 and that 0 ! -> 3
+
 }
 
 TEST(SixMensMorrisBoardTest, MoveMillTest){
