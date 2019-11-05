@@ -2,6 +2,13 @@
 #include <gtest/gtest.h> 	  			 	 
 #include "SixMensMorrisBoard.h"
 
+//inherit a mock object from protected class
+/*class MockObj: public CSixMensMorrisBoard {
+	public:
+		bool MockMill() { this->MillCreated(); }
+		static bool MockAdjacent() {AdjacentPositions();}
+
+};*/
 TEST(SixMensMorrisBoardTest, DefaultBoardTest){
     // Needs to test that default board is correct
     CSixMensMorrisBoard Board;
@@ -83,13 +90,15 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
     // Needs to test that placement creating a mill is correct with removal
 	//place at 2,9,15 expect mill created
 	CSixMensMorrisBoard Board;
+	MockObj;
+
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 2);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 3);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 9);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15);
-	//TODO Find how to call a private method
-	//EXPECT_TRUE(CSixMensMorrisBoard::MillCreated(SIX_MENS_MORRIS_PLAYER_R));
+	//TODO Find how to call a 
+	//EXPECT_TRUE(MockMill(SIX_MENS_MORRIS_PLAYER_R));
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 7);
 	//TODO ...
 	//EXPECT_TRUE(Board.MillCreated(SIX_MENS_MORRIS_PLAYER_W));
