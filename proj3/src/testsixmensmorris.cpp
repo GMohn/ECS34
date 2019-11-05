@@ -5,10 +5,9 @@
 //inherit a mock object from protected class
 class MockClass: public CSixMensMorrisBoard {
 	public:
-		bool MockMill() { 
-			return this->MillCreated(); }
-		static bool MockAdjacent() {
-			return AdjacentPositions();}
+		bool MockMill(char player) { return this->MillCreated(player); }
+		static bool MockAdjacent(int from, int to) {
+			return AdjacentPositions(from, to); }
 
 };
 TEST(SixMensMorrisBoardTest, DefaultBoardTest){
@@ -41,8 +40,7 @@ TEST(SixMensMorrisBoardTest, DefaultBoardTest){
 
 TEST(SixMensMorrisBoardTest, SetBoardTest){
     // Needs to test that setting board is correct
-	CSixMensMorrisBoard Board;
-
+	
     char turn = SIX_MENS_MORRIS_PLAYER_W;
     int unplaced[SIX_MENS_MORRIS_PLAYERS] = {2,3};
     char positions[SIX_MENS_MORRIS_POSITIONS] = {SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
@@ -55,7 +53,7 @@ TEST(SixMensMorrisBoardTest, SetBoardTest){
                                                  SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
                                                  SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
                                                  SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R};
-    Board(turn, unplaced, positions, previous);
+	CSixMensMorrisBoard Board(turn, unplaced, positions, previous);
     EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
     for(int i = 0; i < SIX_MENS_MORRIS_POSITIONS; i++){
         EXPECT_EQ(Board.PlayerAtPosition(i), positions[i]);
@@ -125,18 +123,19 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
     // Needs to test that placement creating a mill is correct with removal
 	//place at 2,9,15 expect mill created
 	CSixMensMorrisBoard Board;
-	MockClass MockMill;
+	MockClass Test;
 
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 2);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 3);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 9);
+	EXPECT_FALSE(Test.MockMill(SIX_MENS_MORRIS_PLAYER_R));
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10);
 	Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15);
-	//TODO Find how to call a 
-	EXPECT_TRUE(MockMill.MillCreated(SIX_MENS_MORRIS_PLAYER_R));
+	//TODO Find how to inherit a protected class
+	EXPECT_TRUE(Test.MockMill(SIX_MENS_MORRIS_PLAYER_R));
 	Board.Place(SIX_MENS_MORRIS_PLAYER_W, 7);
 	//TODO ...
-	//EXPECT_TRUE(Board.MillCreated(SIX_MENS_MORRIS_PLAYER_W));
+	EXPECT_TRUE(Test.MockMill(SIX_MENS_MORRIS_PLAYER_W));
 	
 }
 
