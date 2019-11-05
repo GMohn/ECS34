@@ -131,21 +131,58 @@ TEST(SixMensMorrisBoardTest, PlacementMillTest){
 	EXPECT_FALSE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_R));
 	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10));
 	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 15));
-	//TODO Find how to inherit a protected class
+	
 	EXPECT_TRUE(Board.CanRemove(SIX_MENS_MORRIS_PLAYER_R));
 
 	
 }
 
-TEST(SixMensMorrisBoardTest, MoveTest){
-    // Needs to test that movement is correct
+TEST(SixMensMorrisBoardTest, MoveTest) {
+	// Needs to test that movement is correct
 	//test piece on 6 -> 0 and that 0 ! -> 3
-
+	char turn = SIX_MENS_MORRIS_PLAYER_W;
+	int unplaced[SIX_MENS_MORRIS_PLAYERS] = { 0,0 };
+	char positions[SIX_MENS_MORRIS_POSITIONS] = { SIX_MENS_MORRIS_EMPTY , SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
+												 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_PLAYER_W,
+												 SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W , SIX_MENS_MORRIS_EMPTY,
+												 SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
+												 SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R };
+	char previous[SIX_MENS_MORRIS_POSITIONS] = { SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_R,
+												 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,
+												 SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_W,
+												 SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_EMPTY,
+												 SIX_MENS_MORRIS_PLAYER_R, SIX_MENS_MORRIS_EMPTY, SIX_MENS_MORRIS_PLAYER_R };
+	CSixMensMorrisBoard Board(turn, unplaced, positions, previous);
+	EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
+	for (int i = 0; i < SIX_MENS_MORRIS_POSITIONS; i++) {
+		EXPECT_EQ(Board.PlayerAtPosition(i), positions[i]);
+	}
+	EXPECT_TRUE(Board.Move(SIX_MENS_MORRIS_PLAYER_W, 6, 0));
+	EXPECT_TRUE(Board.Move(SIX_MENS_MORRIS_PLAYER_R, 2, 9));
+	EXPECT_FALSE(Board.Move(SIX_MENS_MORRIS_PLAYER_W, 0, 3));
+	EXPECT_EQ(std::string(Board),
+		" RU:0 RC:2 >WU:0 WC:3\n"
+		"W---------W---------o      0---1---2\n"
+		"|         |         |      | 3-4-5 |\n"
+		"|         |         |      6-7   8-9\n"
+		"|    o----o----W    |      | A-B-C |\n"
+		"|    |         |    |      D---E---F\n"
+		"|    |         |    |        LEGEND\n"
+		"o----o         W----R\n"
+		"|    |         |    |\n"
+		"|    |         |    |\n"
+		"|    o----o----o    |\n"
+		"|         |         |\n"
+		"|         |         |\n"
+		"R---------o---------R\n");
+	EXPECT_EQ(std::string(Board), Board.ToString());
+	
 }
 
 TEST(SixMensMorrisBoardTest, MoveMillTest){
     // Needs to test that movement creating a mill is correct with removal
 	CSixMensMorrisBoard Board;
+
 }
                                        
 TEST(SixMensMorrisBoardTest, TwoPieceGameOverTest){
