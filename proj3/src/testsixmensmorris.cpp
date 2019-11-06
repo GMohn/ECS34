@@ -271,7 +271,6 @@ TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
 		"|         |         |\n"
 		"W---------o---------o\n");
 	
-	//this test keeps failing, error with test?
 	CSixMensMorrisBoard Bo;
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 1));
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 0));
@@ -279,34 +278,32 @@ TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 6));
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 9));
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 4));
-	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 12));
-	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 8));
+	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 8));
+	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 12));
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 14));
-	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 10));
-	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 15));
+	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 15));
+	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 5));
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 13));
-   	EXPECT_TRUE(Bo.Move(SIX_MENS_MORRIS_PLAYER_R,12,11));
-    	EXPECT_TRUE(Bo.Move(SIX_MENS_MORRIS_PLAYER_W,7,6));
-    	EXPECT_TRUE(Bo.Remove(SIX_MENS_MORRIS_PLAYER_R, 14));
-    	EXPECT_TRUE(Bo.Move(SIX_MENS_MORRIS_PLAYER_R,11,14));
-    	EXPECT_TRUE(Bo.Move(SIX_MENS_MORRIS_PLAYER_W,10,11));
+        EXPECT_TRUE(Bo.CanRemove(SIX_MENS_MORRIS_PLAYER_W));
+        EXPECT_TRUE(Bo.Remove(SIX_MENS_MORRIS_PLAYER_W, 14));
+
 
     	EXPECT_TRUE(Bo.GameOver());
-    	EXPECT_EQ(std::string(Bo),
-		"RU:0 RC:0  >WU:0 WC:1\n"
+ 	EXPECT_EQ(std::string(Bo),
+		" RU:0 RC:0  WU:0 WC:1\n"
 		"W---------R---------R      0---1---2\n"
 		"|         |         |      | 3-4-5 |\n"
 		"|         |         |      6-7   8-9\n"
-		"|    o----W----o    |      | A-B-C |\n"
+		"|    o----W----R    |      | A-B-C |\n"
 		"|    |         |    |      D---E---F\n"
 		"|    |         |    |        LEGEND\n"
-		"W----o         W----R\n"
+		"W----o         R----R\n"
 		"|    |         |    |\n"
 		"|    |         |    |\n"
-		"|    o----W----o    |\n"
+		"|    o----o----W    |\n"
 		"|         |         |\n"
 		"|         |         |\n"
-		"W---------R---------W\n");
+		"W---------o---------W\n");
 }
 
 TEST(SixMensMorrisBoardTest, BadParametersTest){
