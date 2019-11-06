@@ -240,6 +240,35 @@ TEST(SixMensMorrisBoardTest, TwoPieceGameOverTest){
 TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
     // Needs to test that game over is correct when no movement allowed
 	CSixMensMorrisBoard Board;
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 0));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 2));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 1));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 9));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 3));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 5));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 4));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 11));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 7));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 10));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 6));
+	EXPECT_TRUE(Board.Place(SIX_MENS_MORRIS_PLAYER_W, 13));
+	EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
+	EXPECT_TRUE(Board.GameOver());
+	EXPECT_EQ(std::string(Board),
+		" RU:0 RC:0 >WU:0 WC:0\n"
+		"R---------R---------W      0---1---2\n"
+		"|         |         |      | 3-4-5 |\n"
+		"|         |         |      6-7   8-9\n"
+		"|    R----R----W    |      | A-B-C |\n"
+		"|    |         |    |      D---E---F\n"
+		"|    |         |    |        LEGEND\n"
+		"R----R         O----W\n"
+		"|    |         |    |\n"
+		"|    |         |    |\n"
+		"|    W----W----o    |\n"
+		"|         |         |\n"
+		"|         |         |\n"
+		"W---------o---------o\n");
 }
 
 TEST(SixMensMorrisBoardTest, BadParametersTest){
