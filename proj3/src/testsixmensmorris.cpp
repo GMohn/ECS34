@@ -270,7 +270,7 @@ TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
 		"|         |         |\n"
 		"|         |         |\n"
 		"W---------o---------o\n");
-	
+	//placement -> remove -> game over
 	CSixMensMorrisBoard Bo;
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_R, 1));
 	EXPECT_TRUE(Bo.Place(SIX_MENS_MORRIS_PLAYER_W, 0));
