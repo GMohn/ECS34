@@ -221,7 +221,7 @@ TEST(SixMensMorrisBoardTest, MoveMillTest){
                                        
 TEST(SixMensMorrisBoardTest, TwoPieceGameOverTest){
     // Needs to test that game over is correct when only two pieces left
-	char turn = SIX_MENS_MORRIS_PLAYER_R;
+	char turn = SIX_MENS_MORRIS_PLAYER_W;
 	int unplaced[SIX_MENS_MORRIS_PLAYERS] = { 0,0 };
 	char positions[SIX_MENS_MORRIS_POSITIONS] = { SIX_MENS_MORRIS_EMPTY , SIX_MENS_MORRIS_PLAYER_W, SIX_MENS_MORRIS_PLAYER_W,
 												 SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_EMPTY,SIX_MENS_MORRIS_PLAYER_W,
@@ -255,14 +255,14 @@ TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
 	EXPECT_EQ(Board.PlayerTurn(), SIX_MENS_MORRIS_PLAYER_W);
 	EXPECT_TRUE(Board.GameOver());
 	EXPECT_EQ(std::string(Board),
-		" RU:0 RC:0 >WU:0 WC:0\n"
+		" RU:0 RC:0  WU:0 WC:0\n"
 		"R---------R---------W      0---1---2\n"
 		"|         |         |      | 3-4-5 |\n"
 		"|         |         |      6-7   8-9\n"
 		"|    R----R----W    |      | A-B-C |\n"
 		"|    |         |    |      D---E---F\n"
 		"|    |         |    |        LEGEND\n"
-		"R----R         O----W\n"
+		"R----R         o----W\n"
 		"|    |         |    |\n"
 		"|    |         |    |\n"
 		"|    W----W----o    |\n"
