@@ -304,6 +304,43 @@ TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
 		"|         |         |\n"
 		"|         |         |\n"
 		"W---------o---------W\n");
+	
+	//placement -> move -> remove -> game over
+	CSixMensMorrisBoard B;
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_R, 1));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_W, 0));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_R, 2));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_W, 7));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_R, 9));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_W, 4));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_R, 8));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_W, 12));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_R, 14));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_W, 15));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_R, 5));
+	EXPECT_TRUE(B.Place(SIX_MENS_MORRIS_PLAYER_W, 13));
+    	EXPECT_TRUE(B.Move(SIX_MENS_MORRIS_PLAYER_R,14,11));
+    	EXPECT_TRUE(B.Move(SIX_MENS_MORRIS_PLAYER_W,7,6)); 
+    	EXPECT_TRUE(B.CanRemove(SIX_MENS_MORRIS_PLAYER_W));
+    	EXPECT_TRUE(B.Remove(SIX_MENS_MORRIS_PLAYER_W, 11));
+
+
+    	EXPECT_TRUE(B.GameOver());
+    	EXPECT_EQ(std::string(B),
+		" RU:0 RC:0  WU:0 WC:1\n"
+		"W---------R---------R      0---1---2\n"
+		"|         |         |      | 3-4-5 |\n"
+		"|         |         |      6-7   8-9\n"
+		"|    o----W----R    |      | A-B-C |\n"
+		"|    |         |    |      D---E---F\n"
+		"|    |         |    |        LEGEND\n"
+		"W----o         R----R\n"
+		"|    |         |    |\n"
+		"|    |         |    |\n"
+		"|    o----o----W    |\n"
+		"|         |         |\n"
+		"|         |         |\n"
+		"W---------o---------W\n");
 }
 
 TEST(SixMensMorrisBoardTest, BadParametersTest){
