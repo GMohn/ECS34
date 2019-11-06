@@ -275,5 +275,9 @@ TEST(SixMensMorrisBoardTest, NoMoveGameOverTest){
 TEST(SixMensMorrisBoardTest, BadParametersTest){
     // Needs to test that correct return upon bad parameters
 	CSixMensMorrisBoard Board;
+	EXPECT_FALSE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, -1));
+	EXPECT_FALSE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 16));
+	EXPECT_FALSE(Board.Place(SIX_MENS_MORRIS_PLAYER_R, 3798));
+
 }
 #endif
